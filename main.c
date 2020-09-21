@@ -171,7 +171,10 @@ int main()
             else{
               Lista inversa;
               if(verifica == 1){
-
+                if(lista_vazia(lista)){
+                    printf("A lista esta vazia\n");
+                    break;
+                } 
                 inversa=inverte(lista);
                 if(inversa != NULL){
                 printf("A lista foi invertida com sucesso\n");
@@ -193,6 +196,10 @@ int main()
                 printf("Qual lista deseja inverter ?\n");
                 scanf("%d",&i);
                 if(i == 1){
+                  if(lista_vazia(lista)){
+                    printf("A lista esta vazia\n");
+                    break;
+                   }  
                   inversa=inverte(lista);
                   if(inversa != NULL){
                     printf("Lista 1 invertida com sucesso\n");
@@ -209,6 +216,10 @@ int main()
                   else
                     printf("Falha ao inverter\n");
                 }else{
+                  if(lista_vazia(lista2)){
+                    printf("A lista esta vazia\n");
+                    break;
+                   }  
                   inversa=inverte(lista2);
                   if(inversa != NULL){
                     printf("Lista 2 invertida com sucesso\n");
