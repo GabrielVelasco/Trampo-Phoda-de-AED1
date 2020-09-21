@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "prototipos/headers.h"
+#include "headers.h"
+//#include "prototipos/headers.h"
 #define Maximo 5
 struct lista
 {
