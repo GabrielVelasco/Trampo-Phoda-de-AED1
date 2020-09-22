@@ -28,7 +28,7 @@ int lista_vazia(Lista lista)
     }
 
 }
-/*
+
 int insere_final(Lista *lista,double numero)
 {
     Lista novo=(Lista)malloc(sizeof(struct no));
@@ -54,8 +54,8 @@ int insere_final(Lista *lista,double numero)
         novo->prox=*lista;
     }
     return 1;
-} ele pede para fazer insere_posicao e nao insere final
-*/
+}
+
 int insere_inicio(Lista*lista, double numero)
 {
     Lista novo=(Lista)malloc(sizeof(struct no));
@@ -272,12 +272,3 @@ void imprime(Lista l)
     }
     printf("\n");
 }
-/*
-int insere_posicao(Lista *lst,int pos,double elem){
-    
-    
-beta, ainda em testes
-}
-
-*/
-
