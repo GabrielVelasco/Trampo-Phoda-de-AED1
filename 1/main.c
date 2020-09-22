@@ -1,8 +1,6 @@
-// ex1
 #include <stdio.h>
 #include <stdlib.h>
-#include "headers.h"
-//#include "prototipos/headers.h" no codeblocks tem que usar esse
+#include "prototipos/headers.h"
 
 int main()
 {
@@ -61,11 +59,17 @@ int main()
                 printf("Lista nao existente\n");
               }else{
                 if(verifica == 1){
+                  if(lista_cheia(lista)){
+                    printf("A lista esta cheia\n");
+                    break;
+                  }
                   printf("Digite um numero: ");
                   scanf("%d",&numero);
                   if(insere_elemento_nao_ordenado(lista,numero))
                   {
                       printf("\ninsercao realizada com sucesso\n");
+                  }else{
+                     printf("Erro ao inserir\n");
                   }
                 }
                 if(verifica == 2){
@@ -74,6 +78,7 @@ int main()
                   if(i == 1){
                     if(lista_cheia(lista) == 1 ){
                       printf("A lista 1 esta cheia\n");
+                      break;
                     }
                     printf("Digite um numero: ");
                     scanf("%d",&numero);
@@ -81,8 +86,11 @@ int main()
                     {
                         printf("insercao realizada com sucesso na lista 1\n");
                     }
+                    else{
+                        printf("Erro ao inserir na lista 1\n");
+                    }
                   }
-                  else{
+                  if(i==2){
                     if(lista_cheia(lista2) == 1){
                       printf("A lista 2 esta cheia\n");
                       break;
@@ -92,6 +100,9 @@ int main()
                     if(insere_elemento_nao_ordenado(lista2,numero))
                     {
                         printf("insercao realizada com sucesso na lista 2\n");
+                    }
+                    else{
+                        printf("Erro ao inserir na lista 2\n");
                     }
                   }
                 }
@@ -153,7 +164,7 @@ int main()
                    printf("Erro ao remover impares\n");
                  }
                 }
-                else{
+                if(i==2){
                   if(remove_impares(lista2)==1)
                  printf("Impares removidos com sucesso\n");
                  else{
@@ -171,11 +182,11 @@ int main()
             }
             else{
               Lista inversa;
-              if(verifica == 1){
+                if(verifica == 1){
                 if(lista_vazia(lista)){
                     printf("A lista esta vazia\n");
                     break;
-                } 
+                }
                 inversa=inverte(lista);
                 if(inversa != NULL){
                 printf("A lista foi invertida com sucesso\n");
@@ -197,10 +208,10 @@ int main()
                 printf("Qual lista deseja inverter ?\n");
                 scanf("%d",&i);
                 if(i == 1){
-                  if(lista_vazia(lista)){
+                    if(lista_vazia(lista)){
                     printf("A lista esta vazia\n");
                     break;
-                   }  
+                }
                   inversa=inverte(lista);
                   if(inversa != NULL){
                     printf("Lista 1 invertida com sucesso\n");
@@ -216,11 +227,12 @@ int main()
                   }
                   else
                     printf("Falha ao inverter\n");
-                }else{
-                  if(lista_vazia(lista2)){
+                }
+                if(i == 2){
+                if(lista_vazia(lista2)){
                     printf("A lista esta vazia\n");
                     break;
-                   }  
+                }
                   inversa=inverte(lista2);
                   if(inversa != NULL){
                     printf("Lista 2 invertida com sucesso\n");
@@ -266,7 +278,7 @@ int main()
             else
             printf("A quantidade de elemento e %d\n",quantidade_elementos(lista));
              }
-          else{
+          if(i == 2){
             if(lista_vazia(lista2) == 1){
               printf("A lista 2 esta vazia\n");
                 }
@@ -305,12 +317,12 @@ int main()
                   }
                printf("O menor elemento da lista e %d",menor_elemento(lista));
                }
-               else{
+               if(i == 2){
                  if(lista_vazia(lista2) == 1){
                    printf("Lista 2 esta vazia\n");
                     break;
                   }
-                printf("O menor elemento da lista e %d",menor_elemento(lista));
+                printf("O menor elemento da lista e %d",menor_elemento(lista2));
                }
               }
              }
@@ -326,12 +338,11 @@ int main()
             Lista lista3;
             lista3=concatena(lista,lista2);
             if(lista3!= NULL){
-                printf("Concatenada\n");
+                printf("Concatenada, lembre-se do limite de elementos de cada lista\n");
             }
             else{
                 printf("Erro ao concatenar\n");
             }
-            printf("\nIMPRIMINDO A LISTA\n");
             for(i=1; ; i++)
             {
                 int n;
@@ -339,8 +350,9 @@ int main()
                 {
                     break;
                 }
-                printf("%d\n",n);
+                printf("%d ",n);
               }
+              printf("\n");
             }
             break;
 //------------------------------------------------------------------------------------------------------------------
@@ -387,7 +399,7 @@ int main()
                 printf("%d\n",n);
 
                }
-              } else{
+              } if(j == 2){
                 if(lista_vazia(lista2) == 1){
                    printf("Lista 2 vazia\n");
                    break;
@@ -430,7 +442,7 @@ int main()
                 printf("A lista ja estava vazia\n");
               }
             }
-            else{
+            if(i == 2){
               if(esvazia(lista2) == 1){
                 printf("Esvaziada com sucesso\n");
               }

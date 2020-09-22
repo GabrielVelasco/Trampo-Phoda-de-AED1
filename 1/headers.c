@@ -1,14 +1,14 @@
-// ex1
 #include <stdio.h>
 #include <stdlib.h>
-#include "headers.h"
-#define Maximo 5
+#include "prototipos/headers.h"
+#define Maximo 20
 struct lista
 {
     int no [Maximo];
     int fim;
 
 };
+
 Lista cria_lista()
 {
     Lista lista;
@@ -35,7 +35,7 @@ int lista_vazia(Lista lista)
 //saiu func lista vazia
 int lista_cheia(Lista lista)
 {
-    if(lista->fim==Maximo)
+    if(lista->fim>=Maximo)
     {
         return 1; // lista esta cheia
     }
@@ -94,10 +94,9 @@ int remove_elemento_nao_ordenado(Lista lista, int numero)
 
 int get_elemento(Lista lista, int pos, int *n)
 {
-    if(lista_vazia(lista)==1 || pos> lista->fim || pos<=0)
+    if(lista_vazia(lista)==1 || pos> lista->fim)
     {
-
-        return 0;
+       return 0;
     }
     *n=lista->no[pos-1];
     return 1;
@@ -197,20 +196,28 @@ Lista concatena(Lista lista1, Lista lista2)
     int i,j;
     Lista lista3 = cria_lista();
     if(lista3 == NULL)
-        return NULL;
+      return NULL;
     for (i = 0; i < lista1->fim; i++)
     {
         lista3->no[i] = lista1->no[i];
+        lista3->fim = lista3->fim + 1;
     }
 
     j = lista3->fim;
+    if(lista_cheia(lista3))
+      return lista3;
 
-    for (i = 0; i < lista2->fim; i++)
+    for (i = 0;i < lista2->fim; i++)
     {
-        lista3->no[j+1] = lista2->no[i];
+
+       lista3->no[j] = lista2->no[i];
+       lista3->fim = lista3->fim + 1;
+       if(lista_cheia(lista3))
+        return lista3;
+       j++;
     }
 
-    lista3->fim=lista1->fim+(lista2->fim);
+    lista3->fim = lista1->fim + (lista2->fim);
     return lista3;
 }
 
