@@ -1,5 +1,5 @@
 Como q ta o bagui:
-1 - Falta arrumar a concatena
+1 - Feito
 2 - ??
 3 - Feito
 4 - Feito
