@@ -1,6 +1,6 @@
 Como q ta o bagui:
 1 - Feito
-2 - ??
+2 - Feito
 3 - Feito
 4 - Feito
 5 - Feito
