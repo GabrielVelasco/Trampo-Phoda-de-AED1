@@ -1,4 +1,4 @@
-// ex1
+// ex 1
 typedef struct lista *Lista;
 
 Lista cria_lista();
