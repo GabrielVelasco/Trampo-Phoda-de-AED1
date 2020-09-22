@@ -1,4 +1,4 @@
-// ex5
+// ex 5
 #include <stdlib.h>
 #include <stdio.h>
 #include "list.h"
