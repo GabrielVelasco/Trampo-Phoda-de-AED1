@@ -6,4 +6,4 @@ Como q ta o bagui:
 5 - Feito
 6 - nao
 7 - nao
-8 - nao
+8 - 50%
