@@ -1,4 +1,4 @@
-// ex3
+// ex 3
 #include <stdlib.h>
 #include <stdio.h>
 #include "list.h"
