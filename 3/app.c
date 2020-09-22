@@ -1,3 +1,4 @@
+// ex3
 #include <stdlib.h>
 #include <stdio.h>
 #include "list.h"
@@ -8,21 +9,14 @@ int main(){
 	List L, L2, L3; // ponteiro para o primeiro node da lista
 
 	while(1){
-		printf("\n==================================");
-		printf("\n[0] Cria listas\n");
-		printf("[1] Insere elemento na lista 1\n");
-		printf("[2] Remover elemento da lista 1\n");
-		printf("[3] Insere elemento na lista 2\n");
-		printf("[4] Remover elemento da lista 2\n");
-		printf("[5] Imprimir listas\n");
-		printf("[6] Consultar elemento lista 1\n");
-		printf("[7] Limpa lista 1\n");
-		printf("[8] Limpa lista 2\n");
-		printf("[9] Limpa lista 3\n");
-		printf("[10] Maior elemento da lista 1\n");
-		printf("[11] Comparar Lista 1 e Lista 2\n");
-		printf("[12] Intercalar Lista 1 e Lista 2\n");
-		printf("[13] Tamanho da lista 1\n");
+		printf("\n======================MENU=========================================\n");
+		printf("[0] Cria Listas                     [7] Limpa lista 1\n");
+		printf("[1] Insere elemento na lista 1      [8] Limpa lista 2\n");
+		printf("[2] Remover elemento da lista 1     [9] Limpa lista 3\n");
+		printf("[3] Insere elemento na lista 2      [10] Maior elemento da lista 1\n");
+		printf("[4] Remover elemento da lista 2     [11] Comparar Lista 1 e Lista 2\n");
+		printf("[5] Imprimir listas                 [12] Intercalar Lista 1 e Lista 2\n");
+		printf("[6] Consultar elemento na lista 1   [13] Tamanho da lista 1\n");
 		printf("\nEscolha uma opcao: ");
 		scanf("%d", &opc);
 

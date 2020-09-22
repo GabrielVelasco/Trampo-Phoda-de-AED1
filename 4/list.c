@@ -1,3 +1,4 @@
+// ex4
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -33,43 +34,45 @@ int emptyList(List lst){
 int insertOrd(List lst, char elem){
 	// cria o node e atribui
 	List node = (List) malloc(sizeof(struct node));
+	List cab = lst; // copia do cabecalho
 	if(node == NULL) return 0;
 
-	List tmp = lst; // tmp == cabecalho
+	//List tmp = lst; // tmp == cabecalho
 	node->info = elem;
-	while( tmp->next != NULL && tmp->next->info < elem )
-		tmp = tmp->next;
+	while( lst->next != NULL && lst->next->info < elem )
+		lst = lst->next;
 
-	node->next = tmp->next;
-	tmp->next = node;
+	node->next = lst->next;
+	lst->next = node;
 
 	// node entrou na ultima pos, logo eh o maior ate aqui
 	if( node->next == NULL )
-		lst->maior = elem;
+		cab->maior = elem;
 
-	lst->tam ++; // mais um elemento na lista // lst == cabecalho
+	cab->tam ++; // mais um elemento na lista // lst == cabecalho
 	return 1;
 }
 
 int removeOrd(List lst, char elem){
 	if( (emptyList(lst)) ) return 0;
+	List cab = lst; // copia do cabecalho
 
-	List tmp = lst;
-	while(tmp->next != NULL && tmp->next->info < elem)
-		tmp = tmp->next;
+	while(lst->next != NULL && lst->next->info < elem)
+		lst = lst->next;
 
-	if( tmp->next == NULL || tmp->next->info > elem ) return 0; // nao existe na lista
+	if( lst->next == NULL || lst->next->info > elem ) return 0; // nao existe na lista
 
-	List tmp2 = tmp->next; // tmp2 node a ser removido
+	List tmp2 = lst->next; // tmp2 node a ser removido
 
 	// caso eu remover o ultimo node
-	if( tmp2->info == lst->maior )
-		lst->maior = tmp->info;
+	// terei um novo maior
+	if( tmp2->next == NULL )
+		cab->maior = lst->info;
 
-	tmp->next = tmp2->next;
+	lst->next = tmp2->next;
 	free(tmp2);
 
-	lst->tam --; // menos um elemento na lista
+	cab->tam --; // menos um elemento na lista
 	return 1;
 }
 
@@ -85,7 +88,7 @@ int getElem(List lst, int idx, char *elem){
 
 void imprimiLista(List lst){
 	while( lst->next != NULL ){
-		printf("%c ", lst->next->info);
+		printf("[%c] ", lst->next->info);
 		lst = lst->next;
 	}
 }
