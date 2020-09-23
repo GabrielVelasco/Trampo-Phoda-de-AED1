@@ -168,12 +168,12 @@ int main(){
 				break;
 
 			case 12:
-				if( !ch || (emptyList(L) && emptyList(L2)) )
-					printf("Listas nao inicializadas ou vazias\n");
-				else{
-					intercalar(L, L2, L3);
-					printf("Listas intercaladas!\n");
-				}
+				if( !ch  )
+					printf("Listas nao inicializadas.\n");
+				else
+					intercalar(L, L2, &L3);
+
+				break;
 
 				break;
 

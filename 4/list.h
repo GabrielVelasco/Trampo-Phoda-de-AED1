@@ -12,5 +12,6 @@ int getSize(List);
 int comparaLista(List, List);
 int maiorElem(List, char*);
 void imprimiLista(List);
-void intercalar(List, List, List);
 int esvaziaLista(List);
+void intercalar(List, List, List*);
+void inserePos(List*, char);

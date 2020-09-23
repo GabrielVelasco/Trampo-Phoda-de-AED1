@@ -120,23 +120,82 @@ int maiorElem(List lst, char *elem){
 	return 1;
 }
 
-void intercalar(List L, List L2, List L3){
-	// L3 contem elemento, logo tenho que limpar antes de intercalar
-	if( !emptyList(L3) && esvaziaLista(L3) )
-		printf("Lista 3 limpa, intercalando...\n");
-	
-	// primeiro copiar L para L3
-	// trata primeiro node separado, se L tiver pelo menos 1 node
-	int a;
+void inserePos(List *node, char elem){
+	// node == ultimo node da l3
+	List newNode = (List) malloc(sizeof(struct node));
+	if(newNode == NULL) exit(1);
 
-	while( L->next != NULL ){
-		L = L->next;
-		a = insertOrd(L3, L->info);
+	newNode->info = elem;
+	newNode->next = NULL;
+	if(*node != NULL)
+		(*node)->next = newNode;
+	*node = newNode;
+}
+
+void intercalar(List l1, List l2, List *l3){
+	if( emptyList(l1) && emptyList(l2) ){
+		printf("Listas vazias!\n");
+		return;
+	}
+	if( !emptyList(*l3) && esvaziaLista(*l3) )
+		printf("Limpando lista 3 e intercalando...\n");
+
+	int ch = 1;
+	List tmp3 = *l3;
+	tmp3 = tmp3->next;
+	// se l1 == vazia, l3 = l2 ou l2 == vazia, l3 = l1
+	if( emptyList(l1) ){
+		while( l2->next != NULL ){
+			inserePos(&tmp3, l2->next->info);
+			l2 = l2->next;
+			if(ch){
+				(*l3)->next = tmp3; // tmp3 eh o unico node em l3
+				ch = 0;
+			}
+		}
+		return;
+
+	}else if( emptyList(l2) ){
+		while( l1->next != NULL ){
+			inserePos(&tmp3, l1->next->info);
+			l1 = l1->next;
+			if(ch){
+				(*l3)->next = tmp3;
+				ch = 0;
+			}
+		}
+		return;
+	}
+	// ch tem objetivo de verificar se estou adc o primeiro node em l3
+	// se sim, l3 aponta para o 
+	// se chegou ate aqui l1 e l2 tem pelo menos um node
+	while( (l1->next != NULL) && (l2->next != NULL) ){
+		if( l1->next->info <= l2->next->info ){
+			inserePos(&tmp3, l1->next->info);
+			l1 = l1->next;
+			if(ch){
+				(*l3)->next = tmp3;
+				ch = 0;
+			}
+
+		}else{
+			inserePos(&tmp3, l2->next->info);
+			l2 = l2->next;
+			if(ch){
+				(*l3)->next = tmp3;
+				ch = 0;
+			}
+		}
 	}
 
-	while( L2->next != NULL ){
-		L2 = L2->next;
-		a = insertOrd(L3, L2->info);
+	// se sobrar elementos na l1 ou l2
+	while(l1->next != NULL){
+		inserePos(&tmp3, l1->next->info);
+		l1 = l1->next;
+	}
+	while(l2->next != NULL){
+		inserePos(&tmp3, l2->next->info);
+		l2 = l2->next;
 	}
 }
 
@@ -156,3 +215,23 @@ int esvaziaLista(List lst){
 
 	return 1;
 }
+
+// void intercalar(List L, List L2, List L3){
+// 	// L3 contem elemento, logo tenho que limpar antes de intercalar
+// 	if( !emptyList(L3) && esvaziaLista(L3) )
+// 		printf("Lista 3 limpa, intercalando...\n");
+	
+// 	// primeiro copiar L para L3
+// 	// trata primeiro node separado, se L tiver pelo menos 1 node
+// 	int a;
+
+// 	while( L->next != NULL ){
+// 		L = L->next;
+// 		a = insertOrd(L3, L->info);
+// 	}
+
+// 	while( L2->next != NULL ){
+// 		L2 = L2->next;
+// 		a = insertOrd(L3, L2->info);
+// 	}
+// }
