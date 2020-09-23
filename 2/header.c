@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "cabecalho/header.h"
-#define Maximo 5
+#define Maximo 20
 struct lista
 {
     int no [Maximo];
@@ -153,6 +153,32 @@ int maior_elemento(Lista lista)
 }
 
 Lista intercala(Lista lista1,Lista lista2){
+  Lista lista3 = cria_lista();
+    if(lista3 == NULL)
+        return NULL;
+    int i = 0, j = 0;
+    while(i < lista1->fim || j < lista2->fim){
+        if(lista1->no[i] <= lista2->no[j]){
+            lista3->no[lista3->fim] = lista1->no[i];
+            i++;
+        }
+        else{
+            lista3->no[lista3->fim] = lista2->no[j];
+            j++;
+        }
+        lista3->fim++;
+        if(lista_cheia(lista3)){
+            return lista3;
+        }
+    }
+    return lista3;
+}
+
+
+
+
+/*
+Lista intercala(Lista lista1,Lista lista2){
   int i;
   Lista lista3 = cria_lista();
 
@@ -177,7 +203,7 @@ Lista intercala(Lista lista1,Lista lista2){
     lista3->fim = lista1->fim + (lista2->fim);
     return lista3;
 }
-
+*/ 
 
 /*
 Lista inverte(Lista lista)
