@@ -148,65 +148,38 @@ void intercalar(List l1, List l2, List *l3){
 		printf("Limpando lista 3 e intercalando...\n");
 
 	int ch = 1;
-	List tmp3 = *l3; 
-	// neste momento tmp3 e l3 aponta para null (l3 vazia)
-	// porem o objetivo e tmp3 eh apontar para o ultimo node da l3
-	// para nao ter que percorrer toda l3 ate o final quando for add um novo node
-	// ch serve para fazer l3 apontar para o primeiro node da l3 para n perder a lista
-	// se l1 == vazia, l3 = l2 ou l2 == vazia, l3 = l1
-	if( emptyList(l1) ){
-		while( l2 != NULL ){
-			inserePos(&tmp3, l2->info);
-			l2 = l2->next;
-			if(ch){
-				*l3 = tmp3; // tmp3 eh o unico node em l3
-				ch = 0;
-			}
-		}
-		return;
-
-	}else if( emptyList(l2) ){
-		while( l1 != NULL ){
-			inserePos(&tmp3, l1->info);
-			l1 = l1->next;
-			if(ch){
-				*l3 = tmp3;
-				ch = 0;
-			}
-		}
-		return;
-	}
-	// ch tem objetivo de verificar se estou adc o primeiro node em l3
-	// se sim, l3 aponta para o 
-	// se chegou ate aqui l1 e l2 tem pelo menos um node
+	List tmp3 = *l3;
 	while( (l1 != NULL) && (l2 != NULL) ){
 		if( l1->info <= l2->info ){
 			inserePos(&tmp3, l1->info);
 			l1 = l1->next;
-			if(ch){
-				*l3 = tmp3;
-				ch = 0;
-			}
 
 		}else{
 			// l1->info > l2->info
 			inserePos(&tmp3, l2->info);
 			l2 = l2->next;
-			if(ch){
-				*l3 = tmp3;
-				ch = 0;
-			}
+		}
+		if(ch){
+			*l3 = tmp3; ch = 0;
 		}
 	}
-
 	// se sobrar elementos na l1 ou l2
+	// ch == 1 se l1 ou l2 estiver vazia, logo l3 == l1 ou l2
 	while(l1 != NULL){
 		inserePos(&tmp3, l1->info);
 		l1 = l1->next;
+		if(ch){
+			*l3 = tmp3;
+			ch = 0;
+		}
 	}
 	while(l2 != NULL){
 		inserePos(&tmp3, l2->info);
 		l2 = l2->next;
+		if(ch){
+			*l3 = tmp3;
+			ch = 0;
+		}
 	}
 }
 

@@ -142,60 +142,42 @@ void intercalar(List l1, List l2, List *l3){
 
 	int ch = 1;
 	List tmp3 = *l3;
-	tmp3 = tmp3->next;
-	// se l1 == vazia, l3 = l2 ou l2 == vazia, l3 = l1
-	if( emptyList(l1) ){
-		while( l2->next != NULL ){
-			inserePos(&tmp3, l2->next->info);
-			l2 = l2->next;
-			if(ch){
-				(*l3)->next = tmp3; // tmp3 eh o unico node em l3
-				ch = 0;
-			}
-		}
-		return;
+	tmp3 = tmp3->next; // avanca para o primeiro node da lista
 
-	}else if( emptyList(l2) ){
-		while( l1->next != NULL ){
-			inserePos(&tmp3, l1->next->info);
-			l1 = l1->next;
-			if(ch){
-				(*l3)->next = tmp3;
-				ch = 0;
-			}
-		}
-		return;
-	}
-	// ch tem objetivo de verificar se estou adc o primeiro node em l3
-	// se sim, l3 aponta para o 
-	// se chegou ate aqui l1 e l2 tem pelo menos um node
 	while( (l1->next != NULL) && (l2->next != NULL) ){
 		if( l1->next->info <= l2->next->info ){
 			inserePos(&tmp3, l1->next->info);
 			l1 = l1->next;
-			if(ch){
-				(*l3)->next = tmp3;
-				ch = 0;
-			}
 
 		}else{
 			inserePos(&tmp3, l2->next->info);
 			l2 = l2->next;
-			if(ch){
-				(*l3)->next = tmp3;
-				ch = 0;
-			}
 		}
+		if(ch){
+			(*l3)->next = tmp3; ch = 0;
+		}
+		(*l3)->tam ++;
+		(*l3)->maior = tmp3->info;
 	}
 
-	// se sobrar elementos na l1 ou l2
 	while(l1->next != NULL){
 		inserePos(&tmp3, l1->next->info);
 		l1 = l1->next;
+		if(ch){
+			(*l3)->next = tmp3; ch = 0;
+		}
+		(*l3)->tam ++;
+		(*l3)->maior = tmp3->info;
 	}
+
 	while(l2->next != NULL){
 		inserePos(&tmp3, l2->next->info);
 		l2 = l2->next;
+		if(ch){
+			(*l3)->next = tmp3; ch = 0;
+		}
+		(*l3)->tam ++;
+		(*l3)->maior = tmp3->info;
 	}
 }
 
