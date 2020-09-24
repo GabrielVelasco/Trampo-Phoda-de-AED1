@@ -5,7 +5,7 @@ Como q ta o bagui:
 4 - Feito
 5 - Feito
 6 - ACHO Q O JOAO TA FAZENDO
-7 - Gabriel vai tentar fazer 23/09
+7 - 50%
 8 - Feito
 
 jogo da velha:
