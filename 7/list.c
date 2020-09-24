@@ -1,4 +1,4 @@
-// ex4
+// ex7
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -10,12 +10,12 @@ struct node{
 
 };
 
-// int alloc_check(const void* tmp){
-// 	if(tmp == NULL){
-// 		printf("Erro na alocacao!\n");
-// 		exit()
-// 	}
-// }
+void _alloc_check(const void* tmp){
+	if(tmp == NULL){
+		perror("Erro na alocacao do soldado!");
+		exit(EXIT_FAILURE);
+	}
+}
 
 List _cria_lista(){ return NULL; }
 
@@ -27,12 +27,10 @@ int _lista_vazia(List lst){
 		return 0;	
 }
 
-// int _qntd_sold(List lst){	return lst->next->qnt_soldados; }
-
 int _insere_soldado(List* lst, char nome_sld[]){
 	// insere soldado no final
 	List node = (List) malloc(sizeof(struct node));
-	if(node == NULL) return 0;
+	_alloc_check(node);
 
 	strcpy(node->nome, nome_sld);
 	if(_lista_vazia(*lst))
@@ -54,10 +52,7 @@ void _remove_cur_next(List cur){
 }
 
 void _contador_elimina(List* lst, List cur, int s, int opc, char rem[]){
-	if(cur->next == cur){
-		printf("[%s] VAI SOBREVIVER!\n", cur->nome);
-		return;
-	}
+	if(cur->next == cur) return; // ja tenho o vencedor
 
 	if(opc > 0){
 		// fica um node antras do node que sera usado para
@@ -75,7 +70,33 @@ void _contador_elimina(List* lst, List cur, int s, int opc, char rem[]){
 	if(cur->next == *lst) *lst = cur; // se o node a ser removido for o ultimo
 	_remove_cur_next(cur);
 	printf("Soldado [%s] eliminado!\n", rem);
+
 	_contador_elimina(lst, cur, s, opc, rem);
+}
+
+void _get_elem(List lst, int pos, int qntd_sold, char nome[]){
+	// se pos sorteada for a ultima
+	if(qntd_sold == pos){
+		strcpy(nome, lst->nome);
+		return;
+	}
+
+	while(pos--)
+		lst = lst->next;
+	strcpy(nome, lst->next->nome);
+}
+
+int _busca_nome(List lst, char nome[], int qntd_sold){
+	// dado o nome do soldado, procura-lo na lista e retornar seu indice
+	if( !(strcmp(nome, lst->nome)) ) return qntd_sold;
+	int i = 0; List tmp = lst;
+	while(tmp->next != lst && strcmp(tmp->next->nome, nome) != 0){
+		tmp = tmp->next;
+		i ++;
+	}
+
+	if(i < qntd_sold) return i;
+	else return -1; // soldado n esta na lista
 }
 
 void _printa_lista(List lst){
@@ -84,5 +105,16 @@ void _printa_lista(List lst){
 		printf("[%s] ", lst->next->nome);
 		lst = lst->next;
 	}
-	printf("[%s] \n", ult->nome);
+	printf("[%s]", ult->nome);
+}
+
+void _limpa_lista(List* lst){
+	List tmp = *lst;
+	*lst = (*lst)->next;
+	tmp->next = NULL;
+	while(*lst != NULL){
+		tmp = *lst;
+		*lst = (*lst)->next;
+		free(tmp);
+	}
 }
