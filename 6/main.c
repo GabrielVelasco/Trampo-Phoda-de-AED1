@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "headers/header.h"
+#include "header.h"
 void imprime(Lista l)
 {
     int i,n;
@@ -33,10 +33,10 @@ int main()
 
     }
 
-imprime(lista);
-l2=multiplo_de_3(lista);
-printf("lista 2\n");
-imprime(l2);
+	imprime(lista);
+	l2=multiplo_de_3(lista);
+	printf("lista 2\n");
+	imprime(l2);
     /*
 
     if(remove_maior_elemento(&lista)==1){

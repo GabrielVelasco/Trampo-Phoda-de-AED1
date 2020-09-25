@@ -1,4 +1,4 @@
-#include "headers/header.h"
+#include "header.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -11,11 +11,11 @@ struct no
 };
 
 
-
 Lista cria_lista()
 {
     return NULL;
 }
+
 int lista_vazia(Lista lista)
 {
     if(lista==NULL)
@@ -29,49 +29,49 @@ int lista_vazia(Lista lista)
 }
 
 int insere_elemento(Lista *lst,int elem){
-//aloca novo no e preenche campo info
-Lista N = (Lista) malloc(sizeof(struct no));
-if(N == NULL){
-    return 0; //falha
-}
+    //aloca novo no e preenche campo info
+    Lista N = (Lista) malloc(sizeof(struct no));
+    if(N == NULL){
+        return 0; //falha
+    }
 
-N->info = elem; // insere conteudo
-N->ant = NULL; // nao tem antecessor do novo no
-N->prox = *lst; //sucessor do novo no recebe mesmo end da lista
+    N->info = elem; // insere conteudo
+    N->ant = NULL; // nao tem antecessor do novo no
+    N->prox = *lst; //sucessor do novo no recebe mesmo end da lista
 
-if(lista_vazia(*lst) == 0)
-    (*lst)->ant = N; // faz o antecessor do 1 no ser o novo no
+    if(lista_vazia(*lst) == 0)
+        (*lst)->ant = N; // faz o antecessor do 1 no ser o novo no
 
-*lst = N; // faz a lista apontar para o novo no
-return 1;
+    *lst = N; // faz a lista apontar para o novo no
+    return 1;
 }
 
 int remove_elemento(lista *lst,int elem){
-if(lista_vazia(*lst)) return 0;
-lista aux = *lst; //faz apontar para o 1 no
-while(aux->prox != NULL && aux->info != elem)
-          aux = aux->prox;
-if(aux->info != elem) return 0; //elemento nao esta na lista
-if(aux->prox != NULL) aux->prox->ant = aux->ant;
-if(aux->ant != NULL) aux->ant->prox = aux->prox;
-if(aux == *lst) *lst = aux->prox;
-  free(aux);
-  return 1;
+    if(lista_vazia(*lst)) return 0;
+    lista aux = *lst; //faz apontar para o 1 no
+    while(aux->prox != NULL && aux->info != elem)
+        aux = aux->prox;
+    if(aux->info != elem) return 0; //elemento nao esta na lista
+    if(aux->prox != NULL) aux->prox->ant = aux->ant;
+    if(aux->ant != NULL) aux->ant->prox = aux->prox;
+    if(aux == *lst) *lst = aux->prox;
+      free(aux);
+      return 1;
 }
 
 int remove_todos(Lista *lst,int elem){
-if(lista_vazia(*lst)) return 0;
-lista aux = *lst;
-while(aux->prox != NULL){
-    if(aux->info == elem){
-        aux->prox->ant = aux->ant;
-        if(aux->ant != NULL) aux->ant->prox = aux->prox;
-        if(aux == *lst) *lst = aux->prox;
-    }
-    aux = aux->prox;
- }
-free(aux);
-return 1;
+    if(lista_vazia(*lst)) return 0;
+    lista aux = *lst;
+    while(aux->prox != NULL){
+        if(aux->info == elem){
+            aux->prox->ant = aux->ant;
+            if(aux->ant != NULL) aux->ant->prox = aux->prox;
+            if(aux == *lst) *lst = aux->prox;
+        }
+        aux = aux->prox;
+     }
+    free(aux);
+    return 1;
 }
 
 
@@ -191,16 +191,16 @@ int esvazia(Lista *lista)
 }
 
 Lista multiplo_de_3(Lista *lista){
-Lista lista2 = cria_lista();
- if(lista2 == NULL)
-    return NULL;
-Lista aux = *lista;
-while(aux->prox != NULL){
-   if(aux->info % 3 == 0)
-    insere = insere_elemento(&lista2,aux->info);
-   aux = aux->prox;
-  }
- return lista2;
+    Lista lista2 = cria_lista();
+     if(lista2 == NULL)
+        return NULL;
+    Lista aux = *lista;
+    while(aux->prox != NULL){
+       if(aux->info % 3 == 0)
+        insere = insere_elemento(&lista2,aux->info);
+       aux = aux->prox;
+      }
+     return lista2;
 }
 
 
