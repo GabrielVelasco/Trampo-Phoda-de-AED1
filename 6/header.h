@@ -10,4 +10,4 @@ int remove_todos(Lista *lista,int elem);
 int esvazia(Lista *lista);
 void multiplo_de_3(Lista, Lista*);
 void printa(Lista);
-//int inverter_lista(List);
+Lista inverter_lista(Lista *lst);
