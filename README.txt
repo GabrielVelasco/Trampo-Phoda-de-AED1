@@ -10,7 +10,7 @@ Como q ta o bagui:
 
 jogo da velha:
 
-  X|  |
+  X|  |X
 ----------
   O|  |
 ----------
