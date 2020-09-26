@@ -4,7 +4,7 @@ Como q ta o bagui:
 3 - Feito
 4 - Feito
 5 - Feito
-6 - Falta o programa aplicativo e terminar algumas funções
+6 - Falta testar direito e funcao inverter
 7 - Feito
 8 - Feito
 
