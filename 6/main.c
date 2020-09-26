@@ -14,16 +14,17 @@
 // }
 
 int main(){
+
     int opc, ch = 0, idx;
     int elem;
-    Lista L, L2;
+    Lista L,L2;
 
     while(1){
         printf("\n======================MENU=========================================\n");
         printf("[0] Cria Lista                      [6] Inverter lista\n");
         printf("[1] Insere elemento                 [7] Multiplos de 3\n");
         printf("[2] Remover elemento                [8] Imprimir listas\n");
-        printf("[3] Remover todos\n");
+        printf("[3] Remover todos                   [9] Sair\n");
         printf("[4] Remover maior\n");
         printf("[5] Esvaziar listas\n");
         printf("\nEscolha uma opcao: ");
@@ -90,13 +91,36 @@ int main(){
 
                 break;
 
-            // case 6:
-            //     if(inverter_lista(L))
-            //         printf("Lista invertida.\n");
-            //     else
-            //         printf("Erro ao inverter lista.\n");
-
-            //     break;
+             case 6:
+                 if(!ch){
+                    printf("Lista nao criada\n");
+                 }
+                 else{
+                 printf("Qual lista deseja inverter? 1 ou 2\n");
+                 scanf("%d",&elem);
+                 if(elem == 1){
+                  if(lista_vazia(L)){
+                    printf("Lista 1 vazia\n");
+                    break;
+                  }
+                  Lista L3 = cria_lista();
+                  L3 = inverter_lista(&L);
+                  printa(L3);
+                 }
+                 if(elem == 2){
+                   if(lista_vazia(L2)){
+                    printf("Lista 2 vazia\n");
+                    break;
+                   }
+                  Lista L3 = cria_lista();
+                  L3 = inverter_lista(&L2);
+                  printa(L3);
+                 }
+                 if(elem != 1 && elem != 2){
+                    printf("Entre com uma opcao valida\n");
+                 }
+                }
+                 break;
 
             case 7:
                 multiplo_de_3(L, &L2);
@@ -125,7 +149,9 @@ int main(){
                 }
 
                 break;
-
+            case 9:
+                printf("Saindo");
+                return 0;
             default:
                 ch = 2;
 
