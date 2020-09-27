@@ -146,6 +146,7 @@ int main(){
         }
 
         if(!ch) ch = 1;
+        if(ch == 1) break;
     }
 
     return 0;

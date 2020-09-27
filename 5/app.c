@@ -127,6 +127,7 @@ int main(){
         }
 
         if(!ch) ch = 1;
+        if(ch == 2) break;
     }
 
     return 0;
