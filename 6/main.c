@@ -2,17 +2,6 @@
 #include <stdlib.h>
 #include "header.h"
 
-// void imprime(Lista l){
-//     int i,n;
-//     for(i=1; ; i++){
-//         if(get_elemento(l,i,&n)==0){
-//             break;
-//         }
-//         printf("%d ",n);
-//     }
-//     printf("\n");
-// }
-
 int main(){
 
     int opc, ch = 0, idx;
@@ -24,7 +13,7 @@ int main(){
         printf("[0] Cria Lista                      [6] Inverter lista\n");
         printf("[1] Insere elemento                 [7] Multiplos de 3\n");
         printf("[2] Remover elemento                [8] Imprimir listas\n");
-        printf("[3] Remover todos                   [9] Sair\n");
+        printf("[3] Remover todos                   [any] Sair\n");
         printf("[4] Remover maior\n");
         printf("[5] Esvaziar listas\n");
         printf("\nEscolha uma opcao: ");
@@ -149,9 +138,7 @@ int main(){
                 }
 
                 break;
-            case 9:
-                printf("Saindo");
-                return 0;
+                
             default:
                 ch = 2;
 
