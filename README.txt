@@ -4,14 +4,14 @@ Como q ta o bagui:
 3 - Feito
 4 - Feito
 5 - Feito
-6 - Falta o programa aplicativo e terminar algumas funções
+6 - Feito
 7 - Feito
 8 - Feito
 
 jogo da velha:
 
-  X|  |
+  X|  |X
 ----------
-   |  |
+  O|  |
 ----------
-   |  |O
+  X|  |O

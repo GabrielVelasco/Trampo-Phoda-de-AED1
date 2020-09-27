@@ -177,6 +177,18 @@ void multiplo_de_3(Lista lista, Lista* lista2){
     }
 }
 
+Lista inverter_lista(Lista *lst){
+  Lista lst2 = cria_lista();
+  Lista aux = *lst;
+  while(aux->prox != NULL){
+    insere_elemento(&lst2, aux->info);
+    aux = aux->prox;
+  }
+  insere_elemento(&lst2, aux->info);
+  return lst2;
+}
+
+
 // int libera_lista(Lista *lista)
 // {
 //     if(*lista!=NULL)
