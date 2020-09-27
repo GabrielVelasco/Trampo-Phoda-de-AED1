@@ -108,8 +108,8 @@ int tamanho(Lista lista)
 int remove_maior_elemento(Lista *lista, int* elem){
     if(lista_vazia(*lista)) return 0;
 
-    int maior = minimo;
-    Lista tmp = *lista, tmp2;
+    int maior = (*lista)->info;
+    Lista tmp = (*lista)->prox, tmp2 = *lista;
     while(tmp != NULL){
         if(tmp->info > maior){
             tmp2 = tmp; // ate aqui tmp2 eh o maior
