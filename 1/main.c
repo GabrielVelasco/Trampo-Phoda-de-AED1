@@ -74,7 +74,7 @@ int main()
                   }
                 }
                 if(verifica == 2){
-                  printf("Qual lista deseja inserir? 1 ou 2:\n");
+                  printf("Em qual lista deseja inserir? 1 ou 2:\n");
                   scanf("%d",&i);
                   if(i == 1){
                     if(lista_cheia(lista) == 1 ){
@@ -115,29 +115,29 @@ int main()
               printf("Lista nao existente\n");
             }else{
               if(verifica == 1){
-                printf("diga o elemento voce quer remover\n");
+                printf("Diga o elemento voce quer remover\n");
                 scanf("%d",&numero);
                 if(remove_elemento_nao_ordenado(lista,numero))
                 {
-                  printf("removido com sucesso\n");
+                  printf("Removido com sucesso\n");
                 }
               }else if(verifica == 2){
                 printf("Em qual lista deseja remover o elemento?\n");
                 scanf("%d",&i);
                if(i == 1){
-                  printf("diga o elemento voce quer remover\n");
+                  printf("Diga o elemento voce quer remover\n");
                   scanf("%d",&numero);
                   if(remove_elemento_nao_ordenado(lista,numero))
                   {
-                    printf("removido com sucesso\n");
+                    printf("Removido com sucesso\n");
                   }
                 }
                 if(i == 2){
-                  printf("diga o elemento voce quer remover\n");
+                  printf("Diga o elemento voce quer remover\n");
                   scanf("%d",&numero);
                   if(remove_elemento_nao_ordenado(lista2,numero))
                   {
-                    printf("removido com sucesso\n");
+                    printf("Removido com sucesso\n");
                   }
                 }
               }
@@ -152,7 +152,7 @@ int main()
                if(remove_impares(lista)==1)
                  printf("Impares removidos com sucesso\n");
                  else{
-                   printf("Erro ao remover impares\n");
+                   printf("Erro ao remover os impares\n");
                  }
               }
               else{
@@ -162,14 +162,14 @@ int main()
                  if(remove_impares(lista)==1)
                  printf("Impares removidos com sucesso\n");
                  else{
-                   printf("Erro ao remover impares\n");
+                   printf("Erro ao remover os impares\n");
                  }
                 }
                 if(i==2){
                   if(remove_impares(lista2)==1)
                  printf("Impares removidos com sucesso\n");
                  else{
-                   printf("Erro ao remover impares\n");
+                   printf("Erro ao remover os impares\n");
                }
               }
              }
@@ -206,7 +206,7 @@ int main()
                     printf("Falha ao inverter\n");
               }
               else{
-                printf("Qual lista deseja inverter ?\n");
+                printf("Qual lista deseja inverter?\n");
                 scanf("%d",&i);
                 if(i == 1){
                     if(lista_vazia(lista)){
@@ -267,7 +267,7 @@ int main()
               printf("A lista esta vazia\n");
             }
             else
-            printf("A quantidade de elemento e %d\n",quantidade_elementos(lista));
+            printf("A quantidade de elementos eh %d\n",quantidade_elementos(lista));
            }
            else{
              printf("Qual lista deseja verificar a quantidade de elementos?\n");
@@ -277,14 +277,14 @@ int main()
               printf("A lista 1 esta vazia\n");
                 }
             else
-            printf("A quantidade de elemento e %d\n",quantidade_elementos(lista));
+            printf("A quantidade de elementos eh %d\n",quantidade_elementos(lista));
              }
           if(i == 2){
             if(lista_vazia(lista2) == 1){
               printf("A lista 2 esta vazia\n");
                 }
             else
-            printf("A quantidade de elemento e %d\n",quantidade_elementos(lista2));
+            printf("A quantidade de elementos eh %d\n",quantidade_elementos(lista2));
              }
            }
           }
@@ -305,7 +305,7 @@ int main()
               printf("Lista esta vazia\n");
               break;
             }
-            printf("o menor elemento da lista e %d",menor_elemento(lista));
+            printf("o menor elemento da lista eh %d",menor_elemento(lista));
             }
             else{
               if(verifica == 2){
@@ -316,14 +316,14 @@ int main()
                    printf("Lista 1 esta vazia\n");
                     break;
                   }
-               printf("O menor elemento da lista e %d",menor_elemento(lista));
+               printf("O menor elemento da lista eh %d",menor_elemento(lista));
                }
                if(i == 2){
                  if(lista_vazia(lista2) == 1){
                    printf("Lista 2 esta vazia\n");
                     break;
                   }
-                printf("O menor elemento da lista e %d",menor_elemento(lista2));
+                printf("O menor elemento da lista eh %d",menor_elemento(lista2));
                }
               }
              }
@@ -465,15 +465,3 @@ int main()
     return 0;
 
 }
-
-
-/*        case 11:
-            lista2=cria_lista();
-            printf("diga um elemento para inserir na lista 2");
-            scanf("%d",&numero);
-            if(insere_elemento_nao_ordenado(lista2,numero)==1)
-            {
-                printf("inserido com sucesso\n");
-            }
-            break;
-*/

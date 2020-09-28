@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "cabecalho/header.h"
+#include "header.h"
 #define Maximo 20
 struct lista
 {
@@ -203,7 +203,7 @@ Lista intercala(Lista lista1,Lista lista2){
     lista3->fim = lista1->fim + (lista2->fim);
     return lista3;
 }
-*/ 
+*/
 
 /*
 Lista inverte(Lista lista)
