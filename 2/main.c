@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "cabecalho/header.h"
+#include "header.h"
 int main()
 {
     Lista lista;
@@ -12,7 +12,7 @@ int main()
         printf("[1]- Criar lista                    [7]- Retornar maior elemento\n");
         printf("[2]- Inserir elemento               [8]- Intercalar lista\n");
         printf("[3]- Remover elemento               [9]- Imprimir lista\n");
-        printf("[4]- Remover impares                [10]- Esvaziar lista\n");
+        printf("[4]- Remover pares                  [10]- Esvaziar lista\n");
         printf("[6]- Consultar tamanho da lista              [11]- Sair\n");
         printf("[7]- Consultar tamanho maximo da lista \n ");
 
