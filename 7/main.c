@@ -31,13 +31,16 @@ int main(){
 	// entrada dos nomes
 	// a cada nome aloca um node
 	printf("Digite os nomes dos soldados cercados(digite fim para terminar):\n");
-	while(strcmp(nome_sld,"fim") != 0){
+	while(1){
         scanf("%s", nome_sld);
+	    if(strcmp(nome_sld,"fim") == 0)
+	     break;
 		if(_insere_soldado(&lst_soldados, nome_sld)){
 			printf("Soldado inserido com sucesso!\n");
 			qntd_sold ++;
 		}
 	}
+
 
 	printf("\nLista de soldados em volta da fogueira a beira da morte:\n");
 	if(_lista_vazia(lst_soldados)){
