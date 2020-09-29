@@ -5,13 +5,11 @@
 
 struct node{
 	float info;
-	List next;
+	struct node* next;
 
 };
 
-List createList(){
-	return NULL;
-}
+List createList(){ return NULL; }
 
 int emptyList(List lst){
 	// verifica se E o primeiro node
@@ -22,7 +20,7 @@ int emptyList(List lst){
 }
 
 int insertOrd(List *lst, float elem){
-	// *lst == end memo do ponteiro p/ primeiro node
+	// *lst == ponteiro p/ primeiro node
 	// primeiro cria o node a ser inserido e atribui os valores
 
 	List node = (List) malloc(sizeof(struct node));
@@ -86,7 +84,7 @@ int getSize(List lst){
 
 int getElem(List lst, int idx, float *num){
 	// retorna o conteudo do node dado o indice (posicao do node) a partir do 0
-	if(idx >= getSize(lst)) return 0; // fora da lista
+	if(idx >= getSize(lst) || idx < 0) return 0; // fora da lista
 
 	while(idx --)
 		lst = lst->next;
@@ -97,76 +95,69 @@ int getElem(List lst, int idx, float *num){
 }
 
 void imprimiLista(List lst){
-	// trata 1° node separado
-	printf("[%.2f] ", lst->info);
-	while( lst->next != NULL ){
-		lst = lst->next;
+	while(lst != NULL){
 		printf("[%.2f] ", lst->info);
+		lst = lst->next;
 	}
 }
 
 int comparaLista(List L, List L2){
-	if( emptyList(L) || emptyList(L2) ) return 0;
-	if( getSize(L) != getSize(L2) ) return 0;
+	int size1 = getSize(L), size2 = getSize(L2);
+	if(size1 != size2) return 0;
 
-	List tmpL = L;
+	// chegou ate aqui, listas tem tamanhos iguais
 	int cont = 0;
-	if( L->info == L2->info ) 
-		cont ++;
-	else 
-		return 0;
-
-	while( (L->next != NULL) && (L->next->info == L2->next->info) ){
-
+	while((L != NULL) && (L->info == L2->info)){
 		L = L->next;
 		L2 = L2->next;
 		cont ++;
 	}
 
-	if( cont == getSize(tmpL) ) return 1;
+	if(cont == size1) return 1;
 	else return 0;
 }
 
-void inserePos(List *node, float elem){
+int inserePos(List *node, float elem){
 	// node == ultimo node da l3
 	List newNode = (List) malloc(sizeof(struct node));
-	if(newNode == NULL) exit(1);
+	if(newNode == NULL) return 0;
 
 	newNode->info = elem;
 	newNode->next = NULL;
 	if(*node != NULL)
-		(*node)->next = newNode;
+		(*node)->next = newNode; // direciona ponteiro para novo ultimo node
 	*node = newNode;
+	return 1;
 }
 
-void intercalar(List l1, List l2, List *l3){
-	if( emptyList(l1) && emptyList(l2) ){
-		printf("Listas vazias!\n");
-		return;
-	}
-	if( !emptyList(*l3) && clearList(l3) )
-		printf("Limpando lista 3 e intercalando...\n");
+int intercalar(List l1, List l2, List *l3){
+	if(!emptyList(*l3)) clearList(l3);
 
-	int ch = 1;
-	List tmp3 = *l3;
-	while( (l1 != NULL) && (l2 != NULL) ){
-		if( l1->info <= l2->info ){
-			inserePos(&tmp3, l1->info);
+	int ch = 1; // fazer l3 apontar para o primeiro node
+	List tmp3 = NULL; // tmp3 aponta para o ultimo node da lista 3
+	while((l1 != NULL) && (l2 != NULL)){
+		if(l1->info <= l2->info){
+			if(!inserePos(&tmp3, l1->info))
+				return 0;
 			l1 = l1->next;
 
 		}else{
 			// l1->info > l2->info
-			inserePos(&tmp3, l2->info);
+			if(!inserePos(&tmp3, l2->info))
+				return 0;
 			l2 = l2->next;
 		}
 		if(ch){
-			*l3 = tmp3; ch = 0;
+			*l3 = tmp3; 
+			ch = 0;
+			// aponta o primeiro node da lista 3.
 		}
 	}
-	// se sobrar elementos na l1 ou l2
-	// ch == 1 se l1 ou l2 estiver vazia, logo l3 == l1 ou l2
+	// aqui ch == 1 se l1 ou l2 estiver vazia, logo l3 == l1 ou l2.
+	// se sobrar elementos na l1 ou l2.
 	while(l1 != NULL){
-		inserePos(&tmp3, l1->info);
+		if(!inserePos(&tmp3, l1->info))
+			return 0;
 		l1 = l1->next;
 		if(ch){
 			*l3 = tmp3;
@@ -174,13 +165,16 @@ void intercalar(List l1, List l2, List *l3){
 		}
 	}
 	while(l2 != NULL){
-		inserePos(&tmp3, l2->info);
+		if(!inserePos(&tmp3, l2->info))
+			return 0;
 		l2 = l2->next;
 		if(ch){
 			*l3 = tmp3;
 			ch = 0;
 		}
 	}
+
+	return 1;
 }
 
 int clearList(List *lst){
@@ -197,6 +191,7 @@ int clearList(List *lst){
 	return 1;
 }
 
+// funcao usada anteriormante para intercalar
 // void intercalar(List L, List L2, List *L3){
 // 	// L3 contem elemento, logo tenho que limpar antes de intercalar
 // 	if( !emptyList(*L3) && clearList(L3) )

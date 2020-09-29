@@ -1,4 +1,5 @@
-// ex 3
+// ex3
+// Lista ORDENADA de float, dinamica/encadeada simples.
 #include <stdlib.h>
 #include <stdio.h>
 #include "list.h"
@@ -26,7 +27,7 @@ int main(){
 				L = createList(); // cria lista vazia (sem nodes)
 				L2 = createList();
 				L3 = createList();
-				printf("\nLista criada\n");
+				printf("\nListas criadas\n");
 
 				break;
 
@@ -160,7 +161,7 @@ int main(){
 			case 11:
 				if( !ch || (emptyList(L) && emptyList(L2)) )
 					printf("Listas nao inicializadas ou vazias\n");
-				else if( comparaLista(L, L2) )
+				else if(comparaLista(L, L2))
 					printf("Listas iguais\n");
 				else
 					printf("Listas diferentes\n");
@@ -168,15 +169,15 @@ int main(){
 				break;
 
 			case 12:
-				if( !ch  )
-					printf("Listas nao inicializadas.\n");
-				else
-					intercalar(L, L2, &L3);
+				if( !ch || ((emptyList(L) && emptyList(L2))) )
+					printf("Listas vazias ou nao inicializadas.\n");
+				else if(intercalar(L, L2, &L3))
+					printf("Listas 1 e 2 intercaladas, printar lista 3.\n");
 
 				break;
 
 			case 13:
-				printf("[%d] elementos\n", getSize(L));
+				printf("Lista 1 tem [%d] elementos\n", getSize(L));
 
 				break;
 

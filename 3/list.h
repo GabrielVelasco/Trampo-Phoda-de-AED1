@@ -10,6 +10,6 @@ int getElem(List, int, float*);
 int getSize(List);
 int getElem(List, int, float*);
 int comparaLista(List, List);
+int inserePos(List*, float);
+int intercalar(List, List, List*);
 void imprimiLista(List);
-void intercalar(List, List, List*);
-void inserePos(List*, float);

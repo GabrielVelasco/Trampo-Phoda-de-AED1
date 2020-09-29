@@ -1,4 +1,5 @@
 // ex 4
+// lista ORDENADA de caracteres COM cabecalho
 #include <stdlib.h>
 #include <stdio.h>
 #include "list.h"
@@ -27,7 +28,6 @@ int main(){
 				L2 = createList();
 				L3 = createList();
 				printf("\nLista criada\n");
-
 				break;
 
 			case 1:
@@ -37,7 +37,6 @@ int main(){
 					printf("Elemento inserido com sucesso!\n");
 				else
 					printf("Erro ao inserir elemento na lista!\n");
-
 				break;
 
 			case 2:
@@ -47,7 +46,6 @@ int main(){
 					printf("Elemento removido com sucesso!\n");
 				else
 					printf("Erro ao remover elemento da lista!\n");
-
 				break;
 
 			case 3:
@@ -57,7 +55,6 @@ int main(){
 					printf("Elemento inserido com sucesso!\n");
 				else
 					printf("Erro ao inserir elemento na lista!\n");
-
 				break;
 
 			case 4:
@@ -67,7 +64,6 @@ int main(){
 					printf("Elemento removido com sucesso!\n");
 				else
 					printf("Erro ao remover elemento da lista!\n");
-
 				break;
 
 
@@ -98,7 +94,6 @@ int main(){
 					imprimiLista(L3);
 					printf("\n");
 				}
-
 				break;
 
 			case 6:
@@ -112,7 +107,6 @@ int main(){
 					else
 						printf("Erro ao consultar elemento\n");
 				}
-
 				break;
 
 			case 7:
@@ -122,7 +116,6 @@ int main(){
 					printf("Lista 1 limpa!\n");
 				else
 					printf("Lista 1 vazia!\n");
-
 				break;
 
 			case 8:
@@ -132,7 +125,6 @@ int main(){
 					printf("Lista 2 limpa!\n");
 				else
 					printf("Lista 2 vazia!\n");
-
 				break;
 
 			case 9:
@@ -142,7 +134,6 @@ int main(){
 					printf("Lista 3 limpa!\n");
 				else
 					printf("Lista 3 vazia!\n");
-
 				break;
 
 			case 10:
@@ -154,7 +145,6 @@ int main(){
 					else
 						printf("Lista vazia!\n");
 				}
-
 				break;
 
 			case 11:
@@ -164,28 +154,22 @@ int main(){
 					printf("Listas iguais\n");
 				else
 					printf("Listas diferentes\n");
-
 				break;
 
 			case 12:
-				if( !ch  )
-					printf("Listas nao inicializadas.\n");
-				else
-					intercalar(L, L2, &L3);
-
-				break;
-
+				if( !ch || ((emptyList(L) && emptyList(L2))) )
+					printf("Listas vazias ou nao inicializadas.\n");
+				else if(intercalar(L, L2, &L3))
+					printf("Listas 1 e 2 intercaladas, printar lista 3.\n");
 				break;
 
 			case 13:
 				printf("[%d] elementos\n", getSize(L));
-
 				break;
 
 
 			default:
 				ch = 2;
-
 				break;
 		}
 

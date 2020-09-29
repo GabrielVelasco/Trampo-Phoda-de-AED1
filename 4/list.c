@@ -94,20 +94,17 @@ void imprimiLista(List lst){
 }
 
 int comparaLista(List L, List L2){
-	if( emptyList(L) || emptyList(L2) ) return 0;
-	int tam1 = getSize(L), tam2 = getSize(L2);
-	if( tam1 != tam2 ) return 0;
+	int cont = 0, size = L->tam;
+	if(size != L2->tam) return 0;
 
-	// se chegou ate aq == listas tem tamanhos iguais
-	int cont = 0; // conta pares iguais nas duas listas
-
-	while( (L->next != NULL) && (L->next->info == L2->next->info) ){
+	// chegou ate aqui, listas tem tamanhos iguais
+	while((L->next != NULL) && (L->next->info == L2->next->info)){
 		L = L->next;
 		L2 = L2->next;
 		cont ++;
 	}
 
-	if( cont == tam1 ) return 1;
+	if(cont == size) return 1;
 	else return 0;
 }
 
@@ -120,65 +117,66 @@ int maiorElem(List lst, char *elem){
 	return 1;
 }
 
-void inserePos(List *node, char elem){
+int inserePos(List *node, char elem){
 	// node == ultimo node da l3
 	List newNode = (List) malloc(sizeof(struct node));
-	if(newNode == NULL) exit(1);
+	if(newNode == NULL) return 0;;
 
 	newNode->info = elem;
 	newNode->next = NULL;
 	if(*node != NULL)
 		(*node)->next = newNode;
 	*node = newNode;
+	return 1;
 }
 
-void intercalar(List l1, List l2, List *l3){
-	if( emptyList(l1) && emptyList(l2) ){
-		printf("Listas vazias!\n");
-		return;
-	}
-	if( !emptyList(*l3) && esvaziaLista(*l3) )
-		printf("Limpando lista 3 e intercalando...\n");
+int intercalar(List l1, List l2, List *l3){
+	if(!emptyList(*l3)) esvaziaLista(*l3);
 
 	int ch = 1;
-	List tmp3 = *l3;
-	tmp3 = tmp3->next; // avanca para o primeiro node da lista
+	List tmp3 = NULL;
 
 	while( (l1->next != NULL) && (l2->next != NULL) ){
 		if( l1->next->info <= l2->next->info ){
-			inserePos(&tmp3, l1->next->info);
+			if(!inserePos(&tmp3, l1->next->info))
+				return 0;
 			l1 = l1->next;
 
 		}else{
-			inserePos(&tmp3, l2->next->info);
+			if(!inserePos(&tmp3, l2->next->info))
+				return 0;
 			l2 = l2->next;
 		}
 		if(ch){
-			(*l3)->next = tmp3; ch = 0;
+			(*l3)->next = tmp3; 
+			ch = 0;
 		}
 		(*l3)->tam ++;
-		(*l3)->maior = tmp3->info;
+		// (*l3)->maior = tmp3->info;
 	}
 
 	while(l1->next != NULL){
-		inserePos(&tmp3, l1->next->info);
+		if(!inserePos(&tmp3, l1->next->info))
+			return 0;
 		l1 = l1->next;
 		if(ch){
 			(*l3)->next = tmp3; ch = 0;
 		}
 		(*l3)->tam ++;
-		(*l3)->maior = tmp3->info;
+		// (*l3)->maior = tmp3->info;
 	}
 
 	while(l2->next != NULL){
-		inserePos(&tmp3, l2->next->info);
+		if(!inserePos(&tmp3, l2->next->info))
+			return 0;
 		l2 = l2->next;
 		if(ch){
 			(*l3)->next = tmp3; ch = 0;
 		}
 		(*l3)->tam ++;
-		(*l3)->maior = tmp3->info;
+		// (*l3)->maior = tmp3->info;
 	}
+	(*l3)->maior = tmp3->info;
 }
 
 int esvaziaLista(List lst){

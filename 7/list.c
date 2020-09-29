@@ -19,7 +19,7 @@ void _alloc_check(const void* tmp){
 
 List _cria_lista(){ return NULL; }
 
-int _lista_vazia(List lst){
+int _lista_vazia(const void* lst){
 	// lista vazia so tem cabecalho
 	if(lst == NULL)
 		return 1;
@@ -34,7 +34,7 @@ int _insere_soldado(List* lst, char nome_sld[]){
 
 	strcpy(node->nome, nome_sld);
 	if(_lista_vazia(*lst))
-		node->next = node; // node aponta para cabecalho	
+		node->next = node; // node aponta para ele mesmo	
 
 	else{
 		node->next = (*lst)->next; // aponta para o primeiro node
@@ -51,7 +51,7 @@ void _remove_cur_next(List cur){
 	free(tmp);
 }
 
-void _contador_elimina(List* lst, List cur, int s, int opc, char rem[]){
+void _contador_elimina(List* lst, List cur, int s, int opc, char rem[], List* lst_elim){
 	if(cur->next == cur) return; // ja tenho o vencedor
 
 	if(opc > 0){
@@ -69,9 +69,9 @@ void _contador_elimina(List* lst, List cur, int s, int opc, char rem[]){
 	strcpy(rem, cur->next->nome);
 	if(cur->next == *lst) *lst = cur; // se o node a ser removido for o ultimo
 	_remove_cur_next(cur);
-	printf("Soldado [%s] eliminado!\n", rem);
+	_insere_soldado(lst_elim, rem);
 
-	_contador_elimina(lst, cur, s, opc, rem);
+	_contador_elimina(lst, cur, s, opc, rem, lst_elim);
 }
 
 void _get_elem(List lst, int pos, int qntd_sold, char nome[]){
@@ -88,7 +88,7 @@ void _get_elem(List lst, int pos, int qntd_sold, char nome[]){
 
 int _busca_nome(List lst, char nome[], int qntd_sold){
 	// dado o nome do soldado, procura-lo na lista e retornar seu indice
-	if( !(strcmp(nome, lst->nome)) ) return qntd_sold;
+	if( !(strcmp(nome, lst->nome)) ) return qntd_sold; // trata ultimo soldado
 	int i = 0; List tmp = lst;
 	while(tmp->next != lst && strcmp(tmp->next->nome, nome) != 0){
 		tmp = tmp->next;
@@ -102,10 +102,10 @@ int _busca_nome(List lst, char nome[], int qntd_sold){
 void _printa_lista(List lst){
 	List ult = lst;
 	while(lst->next != ult){
-		printf("[%s] ", lst->next->nome);
+		printf("%s, ", lst->next->nome);
 		lst = lst->next;
 	}
-	printf("[%s]", ult->nome);
+	printf("%s.", ult->nome);
 }
 
 void _limpa_lista(List* lst){
