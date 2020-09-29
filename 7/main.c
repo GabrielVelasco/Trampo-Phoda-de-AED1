@@ -20,6 +20,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
+#include <string.h>
 #include "list.h"
 
 int main(){
@@ -29,8 +30,9 @@ int main(){
 	// lst aponta para o ultimo node(soldado)
 	// entrada dos nomes
 	// a cada nome aloca um node
-	printf("Digite os nomes dos soldados cercados:\n");
-	while(scanf("%s", nome_sld) != EOF){
+	printf("Digite os nomes dos soldados cercados(digite fim para terminar):\n");
+	while(strcmp(nome_sld,"fim") != 0){
+        scanf("%s", nome_sld);
 		if(_insere_soldado(&lst_soldados, nome_sld)){
 			printf("Soldado inserido com sucesso!\n");
 			qntd_sold ++;
@@ -46,7 +48,7 @@ int main(){
 
 	printf("\n\n");
 	printf("1 - Iniciar contagem a partir do primeiro soldado da lista.\n");
-	printf("2 - Iniciar contagem a partir de uma posição sorteada aleatoriamente da lista.\n");
+	printf("2 - Iniciar contagem a partir de uma posicao sorteada aleatoriamente da lista.\n");
 	printf("3 - Iniciar contagem a partir de um soldado especifico.\n");
 	printf("Escolha uma opcao: ");
 	scanf("%d", &pos); getchar();
@@ -96,7 +98,7 @@ int main(){
 		_printa_lista(lst_soldados); // unico soldado restante
 		_limpa_lista(&lst_soldados);
 		_limpa_lista(&lst_elim);
-		
+
 		if(_lista_vazia(lst_soldados) && _lista_vazia(lst_elim))
 			printf("\nListas limpas, saindo...\n");
 	}
